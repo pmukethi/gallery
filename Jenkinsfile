@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    tools {
+    nodejs 'NodeJs20'
+        }
 
     stages {
         stage('Clone') {
@@ -23,4 +26,13 @@ pipeline {
             }
         }
     }
+    post {
+        success {
+            echo "One or more steps need to be included within each condition's block. success notification to slack"
+            }
+       failure {
+    echo "One or more steps need to be included within each condition's block. failure notification to slack"
+               }
+}
+
 }
