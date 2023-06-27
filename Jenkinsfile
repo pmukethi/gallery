@@ -23,6 +23,10 @@ pipeline {
         stage('Deploy'){
             steps{
                 echo 'And Finally deploying!'
+                withCredentials([usernameColonPassword(credentialsId: "heroku",variable: "HEROKU_CREDENTIALS")]){
+                    sh "git push https://${HEROKU_CREDENTIALS}@git.heroku.com/afternoon-atoll-73630.git master"
+                    
+                }
             }
         }
     }
