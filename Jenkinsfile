@@ -27,15 +27,17 @@ pipeline {
                     sh "git push https://${HEROKU_CREDENTIALS}@git.heroku.com/afternoon-atoll-73630.git master"
                     
                 }
+               
             }
         }
+        
     }
     post {
         success {
-            echo "One or more steps need to be included within each condition's block. success notification to slack"
+            slackSend channel: '#pamela_ip1 ', color: 'good', message: 'Deploy successful'//echo "One or more steps need to be included within each condition's block. success notification to slack"
             }
        failure {
-    echo "One or more steps need to be included within each condition's block. failure notification to slack"
+    slackSend channel: '#pamela_ip1 ',color: 'warning',message:'Deploy Failed'//echo "One or more steps need to be included within each condition's block. failure notification to slack"
                }
 }
 
